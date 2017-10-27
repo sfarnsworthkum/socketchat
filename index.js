@@ -7,14 +7,9 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-  console.log('Knock, knock -- who is it?');
-  socket.on('disconnect', function() {
-    console.log('bye now');
-  });
   socket.on('chat message', function(msg) {
-    io.emit('message ' + msg);
+    io.emit('chat message', msg);
   });
-  socket.broadcast.emit('hello there');
 });
 
 http.listen(3000, function() {
