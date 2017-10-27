@@ -11,6 +11,10 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('bye now');
   });
+  socket.on('chat message', function(msg) {
+    io.emit('message ' + msg);
+  });
+  socket.broadcast.emit('hello there');
 });
 
 http.listen(3000, function() {
